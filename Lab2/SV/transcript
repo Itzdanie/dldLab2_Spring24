@@ -11,28 +11,67 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# do rca8.do
+# do des.do
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 07:37:26 on Sep 29,2022
-# vlog -reportprogress 300 ha.sv fa.sv rca8.sv test_rca8.sv 
-# -- Compiling module ha
-# -- Compiling module fa
-# -- Compiling module rca8
+# Start time: 16:02:33 on Feb 28,2024
+# vlog -reportprogress 300 des_stub.sv tb_des.sv 
+# -- Compiling module GenerateKeys
+# ** Error: (vlog-13069) des_stub.sv(65): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(66): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(69): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(70): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(73): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(74): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(77): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(78): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(81): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(82): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(85): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(86): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(89): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(90): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(93): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(94): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(97): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(98): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(101): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(102): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(105): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(106): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(109): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(110): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(113): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(114): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(117): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(118): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(121): near ",": syntax error, unexpected ','.
+# ** Error: (vlog-13069) des_stub.sv(122): near ",": syntax error, unexpected ','.
+# -- Compiling module PC1
+# ** Error: des_stub.sv(127): (vlog-2730) Undefined variable: 'l'.
+# ** Error: des_stub.sv(127): (vlog-13294) Identifier must be declared with a port mode: l.
+# ** Error: des_stub.sv(127): (vlog-2730) Undefined variable: 'r'.
+# ** Error: des_stub.sv(127): (vlog-13294) Identifier must be declared with a port mode: r.
+# -- Compiling module PC2
+# -- Compiling module SF
+# -- Compiling module EF
+# -- Compiling module feistel
+# -- Compiling module round
+# -- Compiling module IP
+# -- Compiling module FP
+# -- Compiling module S1_Box
+# -- Compiling module S2_Box
+# -- Compiling module S3_Box
+# -- Compiling module S4_Box
+# -- Compiling module S5_Box
+# -- Compiling module S6_Box
+# -- Compiling module S7_Box
+# -- Compiling module S8_Box
+# -- Compiling module DES
 # -- Compiling module stimulus
-# 
-# Top level modules:
-# 	stimulus
-# End time: 07:37:27 on Sep 29,2022, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" work.stimulus 
-# Start time: 07:37:27 on Sep 29,2022
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading sv_std.std
-# Loading work.stimulus(fast)
-# Loading work.rca8(fast)
-# Loading work.fa(fast)
-# Loading work.ha(fast)
-# .main_pane.list.interior.cs.body
-# .main_pane.wave.interior.cs.body.pw.wf
-# End time: 07:39:15 on Sep 29,2022, Elapsed time: 0:01:48
-# Errors: 0, Warnings: 0
+# End time: 16:02:33 on Feb 28,2024, Elapsed time: 0:00:00
+# Errors: 34, Warnings: 0
+# ** Error: C:/modeltech64_2021.3/win64/vlog failed.
+# Error in macro ./des.do line 26
+# C:/modeltech64_2021.3/win64/vlog failed.
+#     while executing
+# "vlog des_stub.sv tb_des.sv"

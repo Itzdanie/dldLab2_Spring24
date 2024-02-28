@@ -59,56 +59,78 @@ module GenerateKeys (Key, SubKey1, SubKey2, SubKey3, SubKey4,
    logic [27:0] r15;
    logic [27:0] l16;
    logic [27:0] r16;
+   logic [27:0] l17;
+   logic [27:0] r17;
    
    PC1 I(key,l1,r1);
 
-   assign l2 = (l1[26:0],l1[27]);
-   assign r2 = (r1[26:0],r1[27]);
+   assign l2 = {l1[26:0],l1[27]};
+   assign r2 = {r1[26:0],r1[27]};
    PC2 II(l2,r2,subkey1);
 
-   assign l3 = (l2[26:0],l2[27]);
-   assign r3 = (r2[26:0],r2[27]);
+   assign l3 = {l2[26:0],l2[27]};
+   assign r3 = {r2[26:0],r2[27]};
    PC2 III(l3,r3,subkey2);
 
-   assign l4 = (l3[25:0],l3[27:26]);
-   assign r4 = (r3[25:0],r3[27:26]);
+   assign l4 = {l3[25:0],l3[27:26]};
+   assign r4 = {r3[25:0],r3[27:26]};
    PC2 IV(l4,r4,subkey3);
 
-   assign l5 = (l4[25:0],l4[27:26]);
-   assign r5 = (r4[25:0],r4[27:26]);
+   assign l5 = {l4[25:0],l4[27:26]};
+   assign r5 = {r4[25:0],r4[27:26]};
    PC2 V(l5,r5,subkey4);
 
-   assign l6 = (l5[25:0],l5[27:26]);
-   assign r6 = (r5[25:0],r5[27:26]);
+   assign l6 = {l5[25:0],l5[27:26]};
+   assign r6 = {r5[25:0],r5[27:26]};
    PC2 VI(l6,r6,subkey5);
 
-   assign l7 = (l6[25:0],l6[27:26]);
-   assign r7 = (r6[25:0],r6[27:26]);
+   assign l7 = {l6[25:0],l6[27:26]};
+   assign r7 = {r6[25:0],r6[27:26]};
    PC2 VII(l7,r7,subkey6);
    
-   assign l8 = (l7[25:0],l7[27:26]);
-   assign r8 = (r7[25:0],r7[27:26]);
+   assign l8 = {l7[25:0],l7[27:26]};
+   assign r8 = {r7[25:0],r7[27:26]};
    PC2 VIII(l8,r8,subkey7);
 
-   assign l9 = (l8[25:0],l8[27:26]);
-   assign r9 = (r8[25:0],r8[27:26]);
+   assign l9 = {l8[25:0],l8[27:26]};
+   assign r9 = {r8[25:0],r8[27:26]};
    PC2 IX(l9,r9,subkey8);
 
-   assign l10 = (l9[26:0],l9[27]);
-   assign r10 = (r9[26:0],r9[27]);
+   assign l10 = {l9[26:0],l9[27]};
+   assign r10 = {r9[26:0],r9[27]};
    PC2 X(l10,r10,subkey9);
 
-   assign l11 = (l10[25:0],l10[27:26]);
-   assign r11 = (r10[25:0],r10[27:26]);
+   assign l11 = {l10[25:0],l10[27:26]};
+   assign r11 = {r10[25:0],r10[27:26]};
    PC2 XI(l11,r11,subkey10);
 
-   assign l12 = (l11[25:0],l11[27:26]);
-   assign r12 = (r11[25:0],r11[27:26]);
-   PC2 II(l2,r2,subkey1);
+   assign l12 = {l11[25:0],l11[27:26]};
+   assign r12 = {r11[25:0],r11[27:26]};
+   PC2 XII(l12,r12,subkey11);
+
+   assign l13 = {l12[25:0],l12[27:26]};
+   assign r13 = {r12[25:0],r12[27:26]};
+   PC2 XIII(l13,r13,subkey12);
+
+   assign l14 = {l13[25:0],l13[27:26]};
+   assign r14 = {r13[25:0],r13[27:26]};
+   PC2 XIV(l14,r14,subkey13);
+
+   assign l15 = {l14[25:0],l14[27:26]};
+   assign r15 = {r14[25:0],r14[27:26]};
+   PC2 XV(l15,r15,subkey14);
+
+   assign l16 = {l15[25:0],l15[27:26]};
+   assign r16 = {r15[25:0],r15[27:26]};
+   PC2 XVI(l16,r16,subkey15);
+
+   assign l17 = {l16[26:0],l16[27]};
+   assign r17 = {r16[26:0],r16[27]};
+   PC2 XVII(l17,r17,subkey16);
 
 endmodule // GenerateKeys
 
-module PC1 (key,l,r);
+module PC1 (key,l1,r1);
 
    input logic [63:0]  key;
    output logic [27:0] l1;
@@ -1063,9 +1085,16 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    // Initial Permutation (IP)
    IP b1 (plaintext, ip_out);
    // round 1
-   
+   logic [63:0] = Round1Out;
+   logic [1:0] = Encryption;
+   logic [1:0] = Mux1Out;
+   assign Mux1Out = Encryption ? subkey1 : subkey16;
+   assign Round1Out(ip_out,Mux1Out,Round1Out);
    // round 2
-   
+   logic [63:0] = Round1Out;
+   logic [1:0] = Mux2Out;
+   assign Mux2Out = Encryption ? subkey2 : subkey15;
+   assign Round1Out(ip_out,Mux2Out,Round2Out);
    // round 3
    
    // round 4
