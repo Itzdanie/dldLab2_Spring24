@@ -1081,36 +1081,59 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
 		    SubKey9, SubKey10, SubKey11, SubKey12,
 		    SubKey13, SubKey14, SubKey15, SubKey16);
    // encrypt (encrypt=1) or decrypt (encrypt=0) 
-
+   logic [1:0] = Encryption;
    // Initial Permutation (IP)
    IP b1 (plaintext, ip_out);
    // round 1
    logic [63:0] = Round1Out;
-   logic [1:0] = Encryption;
-   logic [1:0] = Mux1Out;
+   logic [47:0] = Mux1Out;
    assign Mux1Out = Encryption ? subkey1 : subkey16;
    assign Round1Out(ip_out,Mux1Out,Round1Out);
    // round 2
-   logic [63:0] = Round1Out;
-   logic [1:0] = Mux2Out;
+   logic [63:0] = Round2Out;
+   logic [47:0] = Mux2Out;
    assign Mux2Out = Encryption ? subkey2 : subkey15;
-   assign Round1Out(ip_out,Mux2Out,Round2Out);
+   assign Round2Out(Round1Out,Mux2Out,Round2Out);
    // round 3
-   
+   logic [63:0] = Round3Out;
+   logic [47:0] = Mux3Out;
+   assign Mux3Out = Encryption ? subkey3 : subkey14;
+   assign Round3Out(Round2Out,Mux3Out,Round3Out);
    // round 4
-   
+   logic [63:0] = Round4Out;
+   logic [47:0] = Mux4Out;
+   assign Mux4Out = Encryption ? subkey4 : subkey13;
+   assign Round4Out(Round3Out,Mux4Out,Round4Out);
    // round 5
-   
+   logic [63:0] = Round5Out;
+   logic [47:0] = Mux5Out;
+   assign Mux5Out = Encryption ? subkey5 : subkey12;
+   assign Round5Out(Round4Out,Mux5Out,Round5Out);
    // round 6
-   
+   logic [63:0] = Round6Out;
+   logic [47:0] = Mux6Out;
+   assign Mux6Out = Encryption ? subkey6 : subkey11;
+   assign Round6Out(Round5Out,Mux6Out,Round6Out);
    // round 7
-   
+   logic [63:0] = Round7Out;
+   logic [47:0] = Mux7Out;
+   assign Mux7Out = Encryption ? subkey7 : subkey10;
+   assign Round7Out(Round6Out,Mux7Out,Round7Out);
    // round 8
-   
+   logic [63:0] = Round8Out;
+   logic [47:0] = Mux8Out;
+   assign Mux8Out = Encryption ? subkey8 : subkey9;
+   assign Round8Out(Round8Out,Mux8Out,Round8Out);
    // round 9
-   
+   logic [63:0] = Round9Out;
+   logic [47:0] = Mux9Out;
+   assign Mux9Out = Encryption ? subkey9 : subkey8;
+   assign Round9Out(Round8Out,Mux9Out,Round9Out);
    // round 10
-   
+   logic [63:0] = Round10Out;
+   logic [47:0] = Mux10Out;
+   assign Mux10Out = Encryption ? subkey10 : subkey7;
+   assign Round10Out(Round8Out,Mux9Out,Round9Out);
    // round 11
    
    // round 12
