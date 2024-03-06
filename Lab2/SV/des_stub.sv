@@ -267,6 +267,39 @@ module SF (inp_block, out_block);
    input logic [31:0] inp_block;
    output logic [31:0] out_block;
 
+   assign out_block[31] = inp_block[32-16];
+   assign out_block[30] = inp_block[32-7];
+   assign out_block[29] = inp_block[32-20];
+   assign out_block[28] = inp_block[32-21];
+   assign out_block[27] = inp_block[32-29];
+   assign out_block[26] = inp_block[32-12];
+   assign out_block[25] = inp_block[32-28];
+   assign out_block[24] = inp_block[32-17];
+   assign out_block[23] = inp_block[32-1];
+   assign out_block[22] = inp_block[32-15];
+   assign out_block[21] = inp_block[32-23];
+   assign out_block[20] = inp_block[32-26];
+   assign out_block[19] = inp_block[32-5];
+   assign out_block[18] = inp_block[32-18];
+   assign out_block[17] = inp_block[32-31];
+   assign out_block[16] = inp_block[32-10];
+   assign out_block[15] = inp_block[32-2];
+   assign out_block[14] = inp_block[32-8];
+   assign out_block[13] = inp_block[32-24];
+   assign out_block[12] = inp_block[32-14];
+   assign out_block[11] = inp_block[32-32];
+   assign out_block[10] = inp_block[32-27];
+   assign out_block[9] = inp_block[32-3];
+   assign out_block[8] = inp_block[32-9];
+   assign out_block[7] = inp_block[32-19];
+   assign out_block[6] = inp_block[32-13];
+   assign out_block[5] = inp_block[32-30];
+   assign out_block[4] = inp_block[32-6];
+   assign out_block[3] = inp_block[32-22];
+   assign out_block[2] = inp_block[32-11];
+   assign out_block[1] = inp_block[32-4];
+   assign out_block[0] = inp_block[32-25];
+
 endmodule // SF
 
 // Expansion Function
@@ -1123,7 +1156,7 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    logic [63:0] = Round8Out;
    logic [47:0] = Mux8Out;
    assign Mux8Out = Encryption ? subkey8 : subkey9;
-   assign Round8Out(Round8Out,Mux8Out,Round8Out);
+   assign Round8Out(Round7Out,Mux8Out,Round8Out);
    // round 9
    logic [63:0] = Round9Out;
    logic [47:0] = Mux9Out;
@@ -1133,19 +1166,37 @@ module DES (input logic [63:0] key, input logic [63:0] plaintext,
    logic [63:0] = Round10Out;
    logic [47:0] = Mux10Out;
    assign Mux10Out = Encryption ? subkey10 : subkey7;
-   assign Round10Out(Round8Out,Mux9Out,Round9Out);
+   assign Round10Out(Round9Out,Mux10Out,Round10Out);
    // round 11
-   
+   logic [63:0] = Round11Out;
+   logic [47:0] = Mux1Out;
+   assign Mux110Out = Encryption ? subkey11 : subkey6;
+   assign Round11Out(Round10Out,Mux11Out,Round11Out);
    // round 12
-   
+   logic [63:0] = Round12Out;
+   logic [47:0] = Mux12Out;
+   assign Mux12Out = Encryption ? subkey12 : subkey5;
+   assign Round12Out(Round11Out,Mux12Out,Round12Out);
    // round 13
-   
+   logic [63:0] = Round13Out;
+   logic [47:0] = Mux13Out;
+   assign Mux13Out = Encryption ? subkey13 : subkey4;
+   assign Round13Out(Round12Out,Mux13Out,Round13Out);
    // round 14
-   
+   logic [63:0] = Round14Out;
+   logic [47:0] = Mux14Out;
+   assign Mux14Out = Encryption ? subkey14 : subkey3;
+   assign Round14Out(Round13Out,Mux14Out,Round14Out);
    // round 15
-   
+   logic [63:0] = Round15Out;
+   logic [47:0] = Mux15Out;
+   assign Mux15Out = Encryption ? subkey15 : subkey2;
+   assign Round15Out(Round14Out,Mux15Out,Round15Out);
    // round 16
-
+   logic [63:0] = Round16Out;
+   logic [47:0] = Mux16Out;
+   assign Mux16Out = Encryption ? subkey16 : subkey1;
+   assign Round16Out(Round15Out,Mux16Out,Round16Out);
    // Final Permutation (IP^{-1}) (swap output of round16)
    FP FP({r16_out[31:0], r16_out[63:32]}, ciphertext);
    
